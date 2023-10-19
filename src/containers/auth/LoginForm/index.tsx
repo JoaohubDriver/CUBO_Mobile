@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Text, View, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import TextInputComponent from '../../../components/Form/TextInput';
+import TextInputComponent from '../../../components/Form/TextInput/TextInput';
 
 export default function LoginForm() {
 

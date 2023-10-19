@@ -6,7 +6,7 @@ import { useUser } from '../../../contexts/user';
 import { Text, View, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import TextInputComponent from '../../../components/Form/TextInput';
+import TextInputComponent from '../../../components/Form/TextInput/TextInput';
 import { validateForm } from './functions'
 import { validEmail } from '../../../utils/validation';
 
