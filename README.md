@@ -6,6 +6,7 @@ Repositório do projeto CUBO para Mobile, contendo a configuração básica para
 2. Expo
 3. Typescript
 4. TailwindCSS (NativeWind)
+5. Zustand (Context)
 
 ## Requisitos
 1. Node.Js ^18.18.0
