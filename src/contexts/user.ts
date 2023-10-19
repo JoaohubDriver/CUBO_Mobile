@@ -7,6 +7,7 @@ interface UserState {
   setEmail: (email: string) => void;
 
   setDefaultUser: () => void;
+  login: (name: string, email: string) => void;
   signUp: (name: string, email: string) => void;
   logout: () => void;
 }
@@ -18,6 +19,7 @@ export const useUser = create<UserState>((set) => ({
   setEmail: (email: string) => set({ email }),
 
   setDefaultUser: () => setDefaultUser(),
+  login: (name: string, email: string) => login(name, email),
   signUp: (name: string, email: string) => signUp(name, email),
   logout: () => logout(),
 }));
@@ -26,6 +28,13 @@ function setDefaultUser(): void {
   useUser.setState({
     name: "",
     email: "",
+  });
+}
+
+function login(name: string, email: string): void {
+  useUser.setState({
+    name,
+    email,
   });
 }
 

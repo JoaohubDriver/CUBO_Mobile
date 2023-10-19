@@ -1,17 +1,36 @@
+import React, { useEffect } from 'react';
+import { useUser } from '../../contexts/user';
 import { useNavigation } from '@react-navigation/native';
 
+import Ionicons from '@expo/vector-icons/Ionicons';
 import { Text, Button, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Ionicons from '@expo/vector-icons/Ionicons';
 import { StatusBar } from 'expo-status-bar';
 
-import { styled } from 'nativewind';
+import { getUserData, checkTokenValidity } from '../../utils/storage';
 
 export default function Home() {
 
+	const { login } = useUser();
 	const navigation = useNavigation();
+
+
+	useEffect(() => {
+		checkTokenValidity()
+			.then(valid => {
+				if (valid) {
+					getUserData()
+					.then(data => {
+						if (data?.name && data?.email) {
+							login(data.name, data.email);
+							navigation.navigate('Dashboard' as never);
+						}
+					})
+				}
+			})
+	}, []);
 
   return (
 		<SafeAreaView className="px-4 pt-8">

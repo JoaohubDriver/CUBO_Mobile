@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import SignupForm from '../../../containers/auth/SignupForm';
+import SignupForm from '../../../containers/auth/Signup/SignupForm';
 
 export default function Signup() {
 

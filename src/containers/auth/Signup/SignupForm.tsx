@@ -10,6 +10,8 @@ import TextInputComponent from '../../../components/Form/TextInput/TextInput';
 import { validateForm } from './functions'
 import { validEmail } from '../../../utils/validation';
 
+import { setUserToken } from '../../../utils/storage';
+
 export default function SignupForm() {
 
 	const navigation = useNavigation();
@@ -23,13 +25,15 @@ export default function SignupForm() {
 
 	const [validated, setValidated] = useState(false);
 
-	function handleSignup() {
+	async function handleSignup() {
 		setValidated(true);
 		
 		if (!validateForm(name, email, password, confirmPassword)) 
 			return;
 
 		signUp(name, email);
+		const token = Math.random().toString(36).substring(7);
+		await setUserToken(token, name, email);
 		setValidated(false);
 		navigation.navigate('Dashboard' as never);
 
@@ -75,6 +79,7 @@ export default function SignupForm() {
 
 			<View className="mt-4">
 				<Button
+					testID="signup-button"
 					title="Criar conta"
 					onPress={() => handleSignup()}
 				/>

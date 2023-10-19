@@ -1,6 +1,6 @@
-import AsyncStorage from '@react-native-async-storage/async-storage'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { daysToMiliseconds } from './time'
+import { daysToMiliseconds } from "./time";
 
 interface UserData {
   token: string;
@@ -9,26 +9,25 @@ interface UserData {
   expiration: number;
 }
 
-async function setUserToken(
-  token: string, 
+export async function setUserToken(
+  token: string,
   name: string,
-  email: string,
+  email: string
 ): Promise<void> {
-
   const userData = {
     token: token,
     name: name,
     email: email,
-    expiration: new Date().getTime() + daysToMiliseconds(30) // Data atual + 30 dias para expirar
+    expiration: new Date().getTime() + daysToMiliseconds(30), // Data atual + 30 dias para expirar
   };
 
-  await AsyncStorage.setItem('userData', JSON.stringify(userData));
+  await AsyncStorage.setItem("userData", JSON.stringify(userData));
 }
 
 // Função para verificar a validade do token
 export const checkTokenValidity = async (): Promise<boolean> => {
   try {
-    const userData = await AsyncStorage.getItem('userData');
+    const userData = await AsyncStorage.getItem("userData");
 
     if (userData) {
       const parsedData: UserData = JSON.parse(userData);
@@ -36,8 +35,8 @@ export const checkTokenValidity = async (): Promise<boolean> => {
 
       if (parsedData?.expiration < currentTime) {
         // O token expirou
-        await AsyncStorage.removeItem('userData'); 
-        return false
+        await AsyncStorage.removeItem("userData");
+        return false;
       }
 
       return true;
@@ -47,4 +46,22 @@ export const checkTokenValidity = async (): Promise<boolean> => {
   }
 
   return false;
+};
+
+export const getUserData = async (): Promise<UserData | null> => {
+  try {
+    const userData = await AsyncStorage.getItem("userData");
+
+    if (userData) {
+      return JSON.parse(userData);
+    }
+  } catch (error) {
+    return null;
+  }
+
+  return null;
+}
+
+export const clearUserData = async (): Promise<void> => {
+  await AsyncStorage.removeItem("userData");
 };

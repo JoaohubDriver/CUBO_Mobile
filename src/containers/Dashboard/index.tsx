@@ -1,6 +1,8 @@
 import { useUser } from '../../contexts/user';
 import { useNavigation } from '@react-navigation/native';
 
+import { clearUserData } from '../../utils/storage';
+
 import { Text, View, Button } from "react-native";
 
 export default function Dashboard() {
@@ -8,8 +10,9 @@ export default function Dashboard() {
   const navigation = useNavigation();
   const { name, email, logout } = useUser();
 
-  function handleLogout() {
+  async function handleLogout() {
     logout();
+    await clearUserData();
     navigation.navigate('Home' as never);
   }
 
