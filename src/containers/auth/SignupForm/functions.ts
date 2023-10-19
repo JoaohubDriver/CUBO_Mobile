@@ -9,7 +9,7 @@ export function validateForm(
   return (
     name.length > 3 &&
     validEmail(email) &&
-    password.length > 6 &&
+    password.length >= 6 &&
     password === confirmPassword
   )
 }

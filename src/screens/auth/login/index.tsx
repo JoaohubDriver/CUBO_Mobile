@@ -5,10 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import LoginForm from "../../../containers/auth/LoginForm";
 
-export default function Login(
-	{ navigation }: { navigation: any }
-	) {
-
+export default function Login() {
   return (
 		<SafeAreaView className="p-4">
 			<LoginForm  />

@@ -7,9 +7,11 @@ type TextInputProps = {
   value: string;
   icon?: any;
   placeholder?: string;
+  className?: string;
   labelClassName?: string;
   inputClassName?: string;
-  invalidFunction?: () => boolean;
+  invalid?: boolean;
+  invalidMessage?: string;
   onChange?: (text: string) => void;
 };
 
@@ -17,17 +19,13 @@ export default function TextInputComponent({
   ...props
 }: TextInputProps) {
 
-  const [touched, setTouched] = useState(false);
-  const [invalid, setInvalid] = useState(false);
 
   function handleOnChange(text: string) {
-    setTouched(true);
-    setInvalid(text.length > 4);
     props.onChange?.(text);
   }
 
   return (
-    <View className="flex flex-column">
+    <View className={`flex flex-column ${props.className}`}>
       { 
         props.label && (
           <Text className={props?.labelClassName}>
@@ -35,17 +33,26 @@ export default function TextInputComponent({
           </Text>
         )
       }
+
       <View className="flex flex-row items-center">
         <TextInput
           value={props.value}
-          onChangeText={(text) => props.onChange?.(text)}
+          onChangeText={(text) => handleOnChange(text)}
           placeholder={props?.placeholder}
           className={`
-            w-full border rounded-md p-2 mb-3 border-gray-300
+            w-full border rounded-md p-2 
             ${ props?.inputClassName }
+            ${  props.invalid ? 'border-red-500' : 'border-grey-400' }
           `}
         />
       </View>
+      { 
+        (props.invalid && props.invalidMessage) && (
+          <Text className="text-red-500">
+            {props.invalidMessage}
+          </Text>
+        )
+      }
     </View>
   );
 }
