@@ -7,7 +7,7 @@ type TextInputProps = {
   value: string;
   icon?: any;
   placeholder?: string;
-  className?: string;
+  style?: string;
   labelClassName?: string;
   inputClassName?: string;
   invalid?: boolean;
@@ -25,7 +25,7 @@ export default function TextInputComponent({
   }
 
   return (
-    <View className={`flex flex-column ${props.className}`}>
+    <View className={`flex flex-column ${props.style}`}>
       { 
         props.label && (
           <Text className={props?.labelClassName}>
@@ -33,7 +33,6 @@ export default function TextInputComponent({
           </Text>
         )
       }
-
       <View className="flex flex-row items-center">
         <TextInput
           value={props.value}

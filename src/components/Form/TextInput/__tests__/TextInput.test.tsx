@@ -9,7 +9,6 @@ describe("TextInput", () => {
         label="Label"
         value="Value"
         placeholder="Placeholder"
-        className="className"
         invalid={false}
         invalidMessage="Invalid Message"
         onChange={() => {}}

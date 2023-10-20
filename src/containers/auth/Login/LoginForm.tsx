@@ -4,6 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 import { Text, View, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { validEmail } from '../../../utils/validation';
+
 import TextInputComponent from '../../../components/Form/TextInput/TextInput';
 
 export default function LoginForm() {
@@ -34,18 +36,19 @@ export default function LoginForm() {
 				value={email}
 				onChange={(text:string) => setEmail(text)}
 				placeholder="Email"
-				invalid={validated && (email.length < 4 || password.length < 6)}
+				style="my-5"
+				invalid={validated && (!validEmail(email) || password.length < 6)}
 			/>
 
 			<TextInputComponent
 				value={password}
 				onChange={(text: string) => setPassword(text)}
 				placeholder="Senha"
-				invalid={validated && (password.length < 6 || email.length < 4)}
+				invalid={validated && (!validEmail(email) || password.length < 6)}
 			/>
 
 			{
-				validated && (email.length < 4 || password.length < 6) &&
+				validated && (!validEmail(email) || password.length < 6) &&
 				<Text className="text-red-500 text-sm">Email ou senha incorretos</Text>
 			}
 

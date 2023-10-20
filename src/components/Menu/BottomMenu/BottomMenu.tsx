@@ -30,7 +30,7 @@ export default function BottomMenu({
             <View className="flex flex-col items-center">
               <Ionicons 
                 name={option.icon} 
-                size={23} 
+                size={20} 
                 color={active === index ? '#61dafb' : '#999999'}
                 className="self-center" 
                 

@@ -57,7 +57,7 @@ export default function SignupForm() {
 				placeholder="Email"
 				invalid={validated && !validEmail(email)}
 				invalidMessage="Email inválido"
-				className="my-3"
+				style="my-3"
 			/>
 
 			<TextInputComponent
@@ -74,7 +74,7 @@ export default function SignupForm() {
 				placeholder="Digite sua senha novamente"
 				invalid={validated && confirmPassword !== password}
 				invalidMessage="Senhas não coincidem"
-				className="my-3"
+				style="my-3"
 			/>
 
 			<View className="mt-4">
