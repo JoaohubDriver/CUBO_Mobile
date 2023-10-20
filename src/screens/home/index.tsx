@@ -24,8 +24,8 @@ export default function Home() {
 					getUserData()
 					.then(data => {
 						if (data?.name && data?.email) {
-							login(data.name, data.email);
-							navigation.navigate('Dashboard' as never);
+							login(data.email);
+							navigation.navigate('App' as never);
 						}
 					})
 				}
