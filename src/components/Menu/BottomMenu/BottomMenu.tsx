@@ -35,7 +35,9 @@ export default function BottomMenu({
                 className="self-center" 
                 
               />
-              <Text className="text-gray-500 text-sm">{option.label}</Text>
+              <Text className={`text-sm ${active === index ? 'text-sky-400' : 'text-gray-500'}`}>
+                {option.label}
+              </Text>
             </View>
           </Pressable>
         ))
