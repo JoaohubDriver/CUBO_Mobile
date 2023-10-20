@@ -4,7 +4,8 @@ import { useNavigation } from '@react-navigation/native';
 
 import Dashboard from '../../containers/user/profile';
 import StopWatch from '../../components/Timer/StopWatch/StopWatch';
-import UserLocation from '../../components/Location/UserLocation'
+
+import UserLocation from '../../components/Location/UserLocation/UserLocation'
 
 import BottomMenu from '../../components/Menu/BottomMenu/BottomMenu'
 
@@ -53,7 +54,7 @@ export default function App() {
       }
       {
         tab === 2 && (
-          <View className="flex flex-column items-center pt-8 mt-8"> 
+          <View className="flex flex-column items-center"> 
             <UserLocation />
           </View>
         )

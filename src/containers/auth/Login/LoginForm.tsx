@@ -5,6 +5,7 @@ import { Text, View, Button } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { validEmail } from '../../../utils/validation';
+import { setUserToken } from '../../../utils/storage';
 
 import TextInputComponent from '../../../components/Form/TextInput/TextInput';
 
@@ -25,6 +26,8 @@ export default function LoginForm() {
 
 		login(email);
 		setValidated(false);
+		const token = Math.random().toString(36).substring(7);
+		await setUserToken(token, 'name', email);
 		navigation.navigate('App' as never);
 	}
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import * as Location from 'expo-location';
 
+import MapView from 'react-native-maps';
 import { Text } from "react-native";
 
 function calculateDistance(lat1: number, lon1: number, lat2: number, lon2: number): number {
@@ -53,18 +54,19 @@ export default function UserLocation() {
   }
 
   return (
-    <>
-      <Text>
-        Latitude: {location.coords.latitude}
-      </Text>
-      <Text>
-        Longitude: {location.coords.longitude}
-      </Text>
-      {
-        userIsMoving ?
-          <Text>Você está se movendo</Text> :
-          <Text>Você está parado</Text>
-      }
-    </>
+    <MapView
+      initialRegion={{
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      }}
+      style={{
+        width: '100%',
+        height: '90%',
+        padding: 0,
+        margin: 0,
+      }}
+    />
   );
 }
