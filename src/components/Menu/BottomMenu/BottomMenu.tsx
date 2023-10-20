@@ -10,12 +10,14 @@ type Option = {
 }
 
 type BottomMenuProps = {
+  active?: number;
   options: Option[];
   className?: string;
 }
 
 
 export default function BottomMenu({ 
+  active,
   options,
   className 
 }: BottomMenuProps) {
@@ -29,7 +31,7 @@ export default function BottomMenu({
               <Ionicons 
                 name={option.icon} 
                 size={23} 
-                color="#61dafb"
+                color={active === index ? '#61dafb' : '#999999'}
                 className="self-center" 
                 
               />

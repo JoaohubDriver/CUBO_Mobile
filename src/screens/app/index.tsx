@@ -62,7 +62,7 @@ export default function App() {
         tab === 3 && <Dashboard /> 
       }
 
-      <BottomMenu options={options} />
+      <BottomMenu active={tab} options={options} />
     </View>
   );
 }
